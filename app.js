@@ -28,7 +28,7 @@ function limparCampo(elemento) {
 }
 
 function adicionarAmigoHTML() {
-    listaDeAmigosHTML.innerHTML = "";
+    listaDeAmigosHTML.innerHTML = ""; //Limpa a lista antes de adicionar elementos, para evitar duplicatas
     listaDeAmigos.forEach(amigo => {
         let novoLi = document.createElement('li');
         novoLi.textContent = (`${amigo}`);
@@ -46,7 +46,10 @@ function contemDuplicata(amigo) {
 
 function sortearAmigo() {
     if (listaDeAmigos == []) {
-        alert ("Lista vazia!");
+        alert("Lista vazia!");
+        return;
+    } else if (listaDeAmigos.length === 1 ) {
+        alert("Apenas um amigo na lista!");
         return;
     }
     let indiceSorteado = Math.floor(Math.random() * listaDeAmigos.length);
