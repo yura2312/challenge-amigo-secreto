@@ -2,6 +2,7 @@
 let listaDeAmigos = [];
 let inputDeAmigo = document.querySelector('input');
 let listaDeAmigosHTML = document.getElementById('listaAmigos');
+let sorteadoHTML = document.getElementById('resultado');
 function adicionarAmigoNaLista(amigo) {
     if (inputDeAmigo.value.trim() === '') {
         alert("Input inválido!")
@@ -41,4 +42,14 @@ function contemDuplicata(amigo) {
         return true;
     }
     return false;
+}
+
+function sortearAmigo() {
+    if (listaDeAmigos == []) {
+        alert ("Lista vazia!");
+        return;
+    }
+    let indiceSorteado = Math.floor(Math.random() * listaDeAmigos.length);
+    let sorteado = listaDeAmigos[indiceSorteado];
+    sorteadoHTML.innerHTML = sorteado;
 }
