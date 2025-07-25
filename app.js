@@ -1,14 +1,19 @@
 //O principal objetivo deste desafio é fortalecer suas habilidades em lógica de programação. Aqui você deverá desenvolver a lógica para resolver o problema.
 let listaDeAmigos = [];
 let inputDeAmigo = document.querySelector('input');
-
+let listaDeAmigosHTML = document.getElementById('listaAmigos');
 function adicionarAmigoNaLista(amigo) {
     if (inputDeAmigo.value.trim() === '') {
         alert("Input inválido!")
-        return adicionarAmigo
-    } else {
+        return;
+    }
+    else if (contemDuplicata(amigo)) {
+        return;
+    }
+    else {
         listaDeAmigos.push(amigo.trim());
         limparCampo(inputDeAmigo);
+        adicionarAmigoHTML();
     }
 }
 
@@ -18,5 +23,22 @@ function adicionarAmigo() {
 }
 
 function limparCampo(elemento) {
-    elemento.value = '';
+    elemento.value = "";
+}
+
+function adicionarAmigoHTML() {
+    listaDeAmigosHTML.innerHTML = "";
+    listaDeAmigos.forEach(amigo => {
+        let novoLi = document.createElement('li');
+        novoLi.textContent = (`${amigo}`);
+        listaDeAmigosHTML.appendChild(novoLi);
+    });
+}
+
+function contemDuplicata(amigo) {
+    if (listaDeAmigos.includes(amigo)) {
+        alert(`${amigo} já esta na lista!`);
+        return true;
+    }
+    return false;
 }
